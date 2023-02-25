@@ -27,7 +27,7 @@ Using the `\begin` or `\end` in the *LaTeX* will probably result in something fa
 class LatexBot(discord.Client):
 	def __init__(self):
 		intents = discord.Intents.default()
-		intents.messages = True
+		intents.message_content = True
 		super().__init__(intents=intents)
 
 		self.check_for_config()
@@ -54,11 +54,7 @@ class LatexBot(discord.Client):
 			print(*args, **kwargs)
 
 	async def on_ready(self):
-		print('------')
-		print('Logged in as')
-		print(self.user.name)
-		print(self.user.id)
-		print('------')
+		print('HeXit (1079154383117365358) is now online!')
 
 	async def on_message(self, message):
 		if chanrestrict.check(message):
