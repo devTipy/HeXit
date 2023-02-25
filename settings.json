@@ -1,0 +1,24 @@
+{
+	"login_method": "token",
+	"renderer": "external",
+	"verbose": true,
+
+	"login": {
+		"email": "theodoreromero616@gmail.com",
+		"password": "MrProgrammer2007!",
+		"token": "MTA3OTE1NDM4MzExNzM2NTM1OA.GTo8oz.u1AXhFPU7lG00Z1gXxIss5qz_a_kdSnysLc5Wk"
+	},
+	"channels": {
+		"whitelist": [],
+		"blacklist": []
+	},
+	"commands": {
+		"render": ["!tex "],
+		"help": ["!help", "!help tex"]
+	},
+	"latex": {
+		"background-colour": "36393E",
+		"text-colour": "DBDBDB",
+		"dpi": "200"
+	}
+}
