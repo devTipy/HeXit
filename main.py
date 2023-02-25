@@ -30,17 +30,17 @@ class LatexBot(discord.Client):
 		intents.messages = True
 		super().__init__(intents=intents)
 
-	self.check_for_config()
-	self.settings = json.loads(open('settings.json').read())
+		self.check_for_config()
+		self.settings = json.loads(open('settings.json').read())
 
-	if 'latex' not in self.settings:
+		if 'latex' not in self.settings:
 			self.settings['latex'] = {
-							'background-colour': '36393E',
-							'text-colour': 'DBDBDB',
-							'dpi': '200'
-			}
+						'background-colour': '36393E',
+						'text-colour': 'DBDBDB',
+						'dpi': '200'
+				}
 
-	chanrestrict.setup(self.settings['channels']['whitelist'],
+		chanrestrict.setup(self.settings['channels']['whitelist'],
 							self.settings['channels']['blacklist'])
 
 	def check_for_config(self):
