@@ -1,5 +1,3 @@
-
-Save New Duplicate & Edit Just Text Twitter
 import discord
 import urllib.request
 import random
