@@ -4,8 +4,6 @@
 	"verbose": true,
 
 	"login": {
-		"email": "XXX",
-		"password": "XXX",
 		"token": "XXX"
 	},
 	"channels": {
