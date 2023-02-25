@@ -62,8 +62,8 @@ class LatexBot(discord.Client):
 
 	async def on_message(self, message):
 		if chanrestrict.check(message):
-
 			msg = message.content
+			print('Processing', msg)
 
 			for c in self.settings['commands']['render']:
 				if msg.startswith(c):
