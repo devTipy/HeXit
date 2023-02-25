@@ -4,8 +4,6 @@ import random
 import os
 import json
 import shutil
-import asyncio
-import sys
 import chanrestrict
 
 LATEX_TEMPLATE="template.tex"
@@ -28,19 +26,21 @@ Using the `\begin` or `\end` in the *LaTeX* will probably result in something fa
 
 class LatexBot(discord.Client):
 	def __init__(self):
-		super().__init__(intents=discord.Intents(messages=True))
+		intents = discord.Intents.default()
+		intents.messages = True
+		super().__init__(intents=intents)
 
-		self.check_for_config()
-		self.settings = json.loads(open('settings.json').read())
+	self.check_for_config()
+	self.settings = json.loads(open('settings.json').read())
 
-		if 'latex' not in self.settings:
+	if 'latex' not in self.settings:
 			self.settings['latex'] = {
 							'background-colour': '36393E',
 							'text-colour': 'DBDBDB',
 							'dpi': '200'
 			}
 
-		chanrestrict.setup(self.settings['channels']['whitelist'],
+	chanrestrict.setup(self.settings['channels']['whitelist'],
 							self.settings['channels']['blacklist'])
 
 	def check_for_config(self):
