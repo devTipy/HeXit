@@ -4,8 +4,6 @@ import random
 import os
 import json
 import shutil
-import asyncio
-import sys
 import chanrestrict
 
 LATEX_TEMPLATE="template.tex"
