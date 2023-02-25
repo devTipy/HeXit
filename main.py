@@ -1,9 +1,13 @@
+
+Save New Duplicate & Edit Just Text Twitter
 import discord
 import urllib.request
 import random
 import os
 import json
 import shutil
+import asyncio
+import sys
 import chanrestrict
 
 LATEX_TEMPLATE="template.tex"
@@ -26,7 +30,7 @@ Using the `\begin` or `\end` in the *LaTeX* will probably result in something fa
 
 class LatexBot(discord.Client):
 	def __init__(self):
-		super().__init__(intents = discord.Intents.default())
+		super().__init__(intents=discord.Intents(messages=True))
 
 		self.check_for_config()
 		self.settings = json.loads(open('settings.json').read())
@@ -40,14 +44,6 @@ class LatexBot(discord.Client):
 
 		chanrestrict.setup(self.settings['channels']['whitelist'],
 							self.settings['channels']['blacklist'])
-
-		if self.settings['login_method'] == 'token':
-			self.run(self.settings['login']['token'])
-		elif self.settings['login_method'] == 'account':
-			self.login(self.settings['login']['email'], self.settings['login']['password'])
-			self.run()
-		else:
-			raise Exception('Bad config: "login_method" should set to "login" or "token"')
 
 	def check_for_config(self):
 		if not os.path.isfile('settings.json'):
@@ -84,11 +80,11 @@ class LatexBot(discord.Client):
 						# raise Exception('TODO: Renable local generation')
 
 					if fn and os.path.getsize(fn) > 0:
-						await self.send_file(message.channel, fn)
+						await message.channel.send(file=discord.File(fn))
 						self.cleanup_output_files(num)
 						self.vprint('Success!')
 					else:
-						await self.send_message(message.channel, 'Something broke. Check the syntax of your message. :frowning:')
+						await message.channel.send('Something broke. Check the syntax of your message. :frowning:')
 						self.cleanup_output_files(num)
 						self.vprint('Failure.')
 
@@ -96,7 +92,7 @@ class LatexBot(discord.Client):
 
 			if msg in self.settings['commands']['help']:
 				self.vprint('Showing help')
-				await self.send_message(message.author, HELP_MESSAGE)
+				await message.author.send(HELP_MESSAGE)
 
 	def generate_image(self, latex, name):
 
@@ -142,4 +138,7 @@ class LatexBot(discord.Client):
 			pass
 
 if __name__ == "__main__":
-	LatexBot()
+	bot = LatexBot()
+	if bot.settings['login_method'] != 'token':
+		raise Exception('Bad config: "login_method" should set to "token"')
+	bot.run(bot.settings['login']['token'])
