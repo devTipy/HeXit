@@ -1,18 +1,10 @@
 {
-	"login_method": "token",
+	"token": "MTA3OTE4OTEzMzkyNDI1NzkzMw.G1LghF.egNloL-ix9tIqjaCXTk5VC_BeokdN8NvgbNE8c",
 	"renderer": "external",
 	"verbose": true,
-
-	"login": {
-		"token": "XXX"
-	},
 	"channels": {
 		"whitelist": [],
 		"blacklist": []
-	},
-	"commands": {
-		"render": ["!tex "],
-		"help": ["!help", "!help tex"]
 	},
 	"latex": {
 		"background-colour": "36393E",
