@@ -1,10 +1,18 @@
 {
-	"token": "XXX",
+	"login_method": "token",
 	"renderer": "external",
 	"verbose": true,
+
+	"login": {
+		"token": "XXX"
+	},
 	"channels": {
 		"whitelist": [],
 		"blacklist": []
+	},
+	"commands": {
+		"render": ["!tex "],
+		"help": ["!help", "!help tex"]
 	},
 	"latex": {
 		"background-colour": "36393E",
